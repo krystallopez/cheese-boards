@@ -5,12 +5,10 @@ const { sequelize } = require("../db");
 const { Sequelize } = require("sequelize");
 
 // Creating the Board mode
-const Board = sequeslize.define("board", {
+const Board = sequelize.define("board", {
   type: Sequelize.STRING,
   description: Sequelize.STRING,
   rating: Sequelize.INTEGER,
 });
 
-module.exports = {
-  Board,
-};
+module.exports = { Board };

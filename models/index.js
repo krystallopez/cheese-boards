@@ -5,13 +5,17 @@
 //Cheese can be on multiple Boards
 
 //Board can have multiple Cheeses
+// const { sequelize } = require("../db");
+// const { Sequelize } = require("sequelize");
 
-const { User } = require("./User.js");
-const { Board } = require("./Boards.js");
-const { Cheese } = require("./Cheese.js");
+const { User } = require("./User");
+const { Board } = require("./Board");
+const { Cheese } = require("./Cheese");
 
-module.exports = {
-  User,
-  Board,
-  Cheese,
-};
+//associations
+// Board.belongsTo(User);
+// User.hasMany(Board);
+// Cheese.belongsToMany(Board, {through: 'cheese_board'});
+// Board.belongsToMany(Cheese, {through: 'cheese_board'});
+
+module.exports = { User, Board, Cheese };

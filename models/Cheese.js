@@ -10,6 +10,4 @@ const Cheese = sequelize.define("cheese", {
   description: Sequelize.STRING,
 });
 
-module.export = {
-  Cheese,
-};
+module.exports = { Cheese };
