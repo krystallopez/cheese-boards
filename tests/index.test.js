@@ -145,7 +145,38 @@ describe("User Model", () => {
       "This English blue cheese is a close relative of Blue Stilton.It is made from cow's milk and is lightly veined with a deep russet coloring. It usually made in a cylindrical shape. This cheese is complimented with a chilled glass of sweet dessert wine or ruby port."
     );
   });
+
+  // D- deleting model instances
+  test("Deleting a user", async () => {
+    const userFound = await User.findAll();
+    const destroyUser = await userFound[0].destroy();
+    const destroyEmail = await userFound[0].destroy();
+
+    expect(destroyUser.name).toEqual("Amanda");
+    expect(destroyEmail.email).toEqual("amanda@test.com");
+  });
+
+  test("Deleting a board", async () => {
+    const boardFound = await Board.findAll();
+    const destroyType = await boardFound[0].destroy();
+    const destroyScript = await boardFound[0].destroy();
+    const destroyRating = await boardFound[0].destroy();
+
+    expect(destroyType.type).toEqual("British Cheese Board");
+    expect(destroyScript.description).toEqual(
+      "This is a cheese board that contains a variety of British cheese."
+    );
+    expect(destroyRating.rating).toEqual(8);
+  });
+
+  test("Deleting a cheese", async () => {
+    const cheeseFound = await Cheese.findAll();
+    const destroyTitle = await cheeseFound[0].destroy();
+    const destroyDescript = await cheeseFound[0].destroy();
+
+    expect(destroyTitle.title).toEqual("Buxton Blue");
+    expect(destroyDescript.description).toEqual(
+      "This English blue cheese is a close relative of Blue Stilton.It is made from cow's milk and is lightly veined with a deep russet coloring. It usually made in a cylindrical shape. This cheese is complimented with a chilled glass of sweet dessert wine or ruby port."
+    );
+  });
 });
-// test("testing board belongs to user", () => {
-//   //
-// })
