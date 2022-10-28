@@ -103,6 +103,48 @@ describe("User Model", () => {
       "You may know this cheese better as ‘Parmesan’, which is the name given to the same cheese which has been made outside of a defined area in Northern Italy.Parmigiano-Reggiano is the real deal, produced in Parma, Reggio Emilia, Modena and parts of Bologna and Mantua and is known for its flaky texture and rich flavour and it’s also been referred to as the ‘King of Cheeses’!"
     );
   });
+
+  // U - Updating model instances
+  test("updating the user", async () => {
+    const userFound = await User.findAll();
+    const updateUser = await userFound[0].update({ name: "Amanda" });
+    const updateEmail = await userFound[0].update({ email: "amanda@test.com" });
+    expect(updateUser.name).toBe("Amanda");
+    expect(updateEmail.email).toBe("amanda@test.com");
+  });
+
+  test("can update a board", async () => {
+    const boardFound = await Board.findAll();
+    const updateType = await boardFound[0].update({
+      type: "British Cheese Board",
+    });
+    const updateScript = await boardFound[0].update({
+      description:
+        "This is a cheese board that contains a variety of British cheese.",
+    });
+    const updateRating = await boardFound[0].update({
+      rating: 8,
+    });
+
+    expect(updateType.type).toBe("British Cheese Board");
+    expect(updateScript.description).toBe(
+      "This is a cheese board that contains a variety of British cheese."
+    );
+    expect(updateRating.rating).toBe(8);
+  });
+
+  test("can update a cheese", async () => {
+    const cheeseFound = await Cheese.findAll();
+    const updateTitle = await cheeseFound[0].update({ title: "Buxton Blue" });
+    const updateDescript = await cheeseFound[0].update({
+      description:
+        "This English blue cheese is a close relative of Blue Stilton.It is made from cow's milk and is lightly veined with a deep russet coloring. It usually made in a cylindrical shape. This cheese is complimented with a chilled glass of sweet dessert wine or ruby port.",
+    });
+    expect(updateTitle.title).toEqual("Buxton Blue");
+    expect(updateDescript.description).toEqual(
+      "This English blue cheese is a close relative of Blue Stilton.It is made from cow's milk and is lightly veined with a deep russet coloring. It usually made in a cylindrical shape. This cheese is complimented with a chilled glass of sweet dessert wine or ruby port."
+    );
+  });
 });
 // test("testing board belongs to user", () => {
 //   //
