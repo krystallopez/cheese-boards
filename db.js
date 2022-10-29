@@ -1,6 +1,6 @@
 const { throws } = require("assert");
 const path = require("path");
-const Sequelize = require("sequelize");
+const { Sequelize } = require("sequelize");
 
 // Connection to db via sequelize
 const sequelize = new Sequelize({
@@ -9,6 +9,4 @@ const sequelize = new Sequelize({
   logging: false,
 });
 
-module.exports = {
-  sequelize,
-};
+module.exports = { sequelize };

@@ -213,5 +213,5 @@ describe("User Model", () => {
     });
   });
 
-  //console.log(pandaBoard[0].type); - this does not work for some reason, may need to reasses
+  //console.log(pandaBoard[0].type); - this does not work for some reason, may need to reassess
 });
