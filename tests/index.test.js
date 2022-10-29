@@ -179,4 +179,39 @@ describe("User Model", () => {
       "This English blue cheese is a close relative of Blue Stilton.It is made from cow's milk and is lightly veined with a deep russet coloring. It usually made in a cylindrical shape. This cheese is complimented with a chilled glass of sweet dessert wine or ruby port."
     );
   });
+
+  // Test for one-to-many
+  test("User/Board with a one-to-many relationship", async () => {
+    let bananaBoard = await Board.create({
+      type: "Bananas",
+      description: "A board with bananas and not cheese.",
+      rating: 9,
+    });
+
+    // Banana Board
+    let foundedUser = await User.findAll();
+    let fruitBoard = foundedUser[0];
+    // console.log(fruitBoard);
+
+    await fruitBoard.addBoard(bananaBoard);
+
+    let getBoards = await fruitBoard.getBoards();
+    expect(getBoards.length).toEqual(1);
+  });
+
+  // Eager Loading tests (not sure if this is completely correct)
+  test("Eager Loading", async () => {
+    let boardFind = await Board.findAll();
+    let cheeses = await Cheese.findAll();
+
+    let bestBoard = await Board.create(seedBoard[0]);
+
+    await bestBoard.addCheese(cheeses[0]);
+
+    const pandaBoard = await Board.findAll({
+      include: [{ model: Cheese, as: "cheeses" }],
+    });
+  });
+
+  //console.log(pandaBoard[0].type); - this does not work for some reason, may need to reasses
 });
